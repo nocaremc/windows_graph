@@ -1,0 +1,23 @@
+{
+    "name": "nocare/windows_graph",
+    "description": "Interacts with Windows Graph with PHP",
+    "type": "library",
+    "require": {
+        "php": ">=5.4",
+        "netresearch/jsonmapper": "^1.3",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "license": "MIT",
+    "authors": [{
+        "name": "Joshua Rodarte",
+        "email": "josh@amariconsulting.com"
+    }],
+    "require-dev": {
+        "phpunit/phpunit": "5.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Buonzz\\Template\\": "src/"
+        }
+    }
+}
