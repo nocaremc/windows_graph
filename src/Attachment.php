@@ -1,6 +1,4 @@
-<?php namespace windows_graph;
-
-use \DateTime;
+<?php namespace nocare\windows_graph;
 
 /**
 *  Attachment
@@ -30,7 +28,7 @@ class Attachment {
     */
     public function saveLocal() {
 
-        $now = new DateTime();
+        $now = new \DateTime();
         $now = $now->format('m-d-Y');
 
         $file_uri = __DIR__ . "/{$now}-{$this->name}";

@@ -1,7 +1,9 @@
 <?php namespace nocare\windows_graph;
 
-use GuzzleHttp\Client;
+use ReflectionException;
+use \GuzzleHttp\Client;
 use JsonMapper;
+use nocare\windows_graph\EmailList;
 
 /**
 *  MSClient
@@ -10,7 +12,7 @@ use JsonMapper;
 *
 *  @author Joshua Rodarte
 */
-class MSClient extends GuzzleHttp\Client {
+class MSClient extends Client {
     
     /**  @var string $token Client Credentials token generated in getClientCredentialsToken */
     private $token;
@@ -100,9 +102,11 @@ class MSClient extends GuzzleHttp\Client {
     * As I only needed message ids and certain subjecs to target attachments,
     * message data will be incomplete
     *
+    * @throws ReflectionException
+    *
     * @return EmailList List of users emails
     */
-    public function getUserMessageIds() {
+    public function getUserMessageIds($search_subject) {
 
         $url = "https://graph.microsoft.com/v1.0/users/{$this->user_id}/messages";
         $res = null;
@@ -111,18 +115,28 @@ class MSClient extends GuzzleHttp\Client {
 
             $res = $this->get($url, $this->headers);
 
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
 
             var_dump($e->getResponse()->getbody()->getcontents());
         }
 
         $data = $res->getBody()->getContents();
         $mapper = new JsonMapper();
-        $object = $mapper->map(json_decode($data), new EmailList());
-        $object->init();
 
-        return $object;
+      //  try {
+            $data = json_decode($data);
+            $data->search_subject = $search_subject;
+            $object = $mapper->map($data, new EmailList());
+            $object->init();
 
+            return $object;
+
+    //    } catch(ReflectionException $e) {
+
+  //          var_dump("MSClient::getUserMessageIds[128]: " . $e->getMessage());
+//        }
+
+        return [];
     }
 
     /**

@@ -1,7 +1,6 @@
-<?php namespace windows_graph;
+<?php namespace nocare\windows_graph;
 
 use JsonMapper;
-use Email;
 
 /**
 *  EmailList
@@ -12,7 +11,7 @@ use Email;
 */
 class EmailList {
 
-    /** @var Array<StdObject|Email> $value Array of Emails */
+    /** @var array $value Array of Emails */
     public $value;
 
     /** @var string $search_subject Email subject to match in getLatestEmail */
@@ -33,10 +32,9 @@ class EmailList {
     public function init() {
 
         foreach($this->value as &$email) {
-            
+
             $mapper = new JsonMapper();
             $email = $mapper->map($email, new Email());
-            $email->init();
         }
     }
 
@@ -62,6 +60,7 @@ class EmailList {
                 return -1;
             }
 
+            // Then we compare the DateTimes
             $a = $a->receivedDateTime;
             $b = $b->receivedDateTime;
 
@@ -71,7 +70,7 @@ class EmailList {
 
             return $a > $b ? -1 : 1;
         });
-        
+
         return $this->value[0];
     }
 }

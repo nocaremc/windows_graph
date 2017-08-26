@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Buonzz\\Template\\": "src/"
+            "nocare\\windows_graph\\": "src/"
         }
     }
 }

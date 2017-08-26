@@ -1,6 +1,5 @@
-<?php namespace windows_graph;
+<?php namespace nocare\windows_graph;
 
-use Attachment;
 use JsonMapper;
 
 /**
@@ -12,7 +11,7 @@ use JsonMapper;
 */
 class AttachmentList {
 
-    /**  @var $value Array of nocare\windows_graph\Attachments OR \StdClass */
+    /**  @var array $value Array of nocare\windows_graph\Attachments OR \StdClass */
     public $value;
 
     /**

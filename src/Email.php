@@ -1,6 +1,4 @@
-<?php namespace windows_graph;
-
-use \DateTime;
+<?php namespace nocare\windows_graph;
 
 /**
 *  Email
@@ -14,21 +12,9 @@ class Email {
     /**  @var string $id ID of this email */
     public $id;
 
-    /** @var DateTime|StdClass $receivedDateTime DateTime email was recieved */
+    /** @var \DateTime $receivedDateTime DateTime email was recieved */
     public $receivedDateTime;
 
     /** @var string $subject Subject of this email */
     public $subject;
-
-    /**
-    * init
-    *
-    * Converts its StdClass DateTime object to an actual DateTime object
-    *
-    * @return void
-    */
-    public function init() {
-
-        $this->receivedDateTime = new DateTime($this->receivedDateTime);
-    }
 }
